@@ -99,7 +99,7 @@ struct m_inode {
 	unsigned char i_nlinks;
 	unsigned short i_zone[9];
 /* these are in memory also */
-	struct task_struct * i_wait;
+	struct task_struct * i_wait;	// process waited for this inode
 	unsigned long i_atime;
 	unsigned long i_ctime;
 	unsigned short i_dev;
