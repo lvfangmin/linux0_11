@@ -99,7 +99,7 @@ struct task_struct {
 	struct m_inode * pwd;
 	struct m_inode * root;
 	struct m_inode * executable;
-	unsigned long close_on_exec;
+	unsigned long close_on_exec;					// a bit map flags for file close on exec
 	struct file * filp[NR_OPEN];
 /* ldt for this task 0 - zero 1 - cs 2 - ds&ss */
 	struct desc_struct ldt[3];

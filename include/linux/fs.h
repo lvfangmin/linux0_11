@@ -40,9 +40,9 @@ void buffer_init(long buffer_end);
 #define Z_MAP_SLOTS 8
 #define SUPER_MAGIC 0x137F
 
-#define NR_OPEN 20
-#define NR_INODE 32
-#define NR_FILE 64
+#define NR_OPEN 20								
+#define NR_INODE 32								// max inodes exists in the system
+#define NR_FILE 64								// max files to be opended in the same time
 #define NR_SUPER 8
 #define NR_HASH 307
 #define NR_BUFFERS nr_buffers
@@ -99,7 +99,7 @@ struct m_inode {
 	unsigned char i_nlinks;
 	unsigned short i_zone[9];
 /* these are in memory also */
-	struct task_struct * i_wait;	// process waited for this inode
+	struct task_struct * i_wait;				// process waited for this inode
 	unsigned long i_atime;
 	unsigned long i_ctime;
 	unsigned short i_dev;
@@ -115,8 +115,8 @@ struct m_inode {
 
 struct file {
 	unsigned short f_mode;
-	unsigned short f_flags;
-	unsigned short f_count;
+	unsigned short f_flags;						// flags for file open and control
+	unsigned short f_count;						// counts of file reference
 	struct m_inode * f_inode;
 	off_t f_pos;
 };
@@ -154,9 +154,10 @@ struct d_super_block {
 	unsigned short s_magic;
 };
 
+// directory structure
 struct dir_entry {
-	unsigned short inode;
-	char name[NAME_LEN];
+	unsigned short inode;			// directory inode
+	char name[NAME_LEN];			// directory name
 };
 
 extern struct m_inode inode_table[NR_INODE];
